@@ -1,0 +1,45 @@
+# Dados do dataset (muito grandes para git)
+dados/treino/
+dados/validacao/
+dados/teste/
+*.zip
+
+# Pesos do modelo
+pesos/*.pt
+*.pt
+
+# Resultados de treino/validacao/deteccao
+runs/
+uvv/yolov9-main/runs/
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+dist/
+build/
+.eggs/
+*.egg
+
+# Ambiente virtual
+venv/
+.venv/
+env/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Jupyter
+.ipynb_checkpoints/
+*.ipynb
+
+# Cache
+*.cache
