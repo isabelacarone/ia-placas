@@ -36,7 +36,7 @@ def treinar():
     parser.add_argument("--batch-size", type=int, default=8, help="Tamanho do batch (padrao: 8)")
     parser.add_argument("--img-size", type=int, default=640, help="Tamanho da imagem (padrao: 640)")
     parser.add_argument("--device", type=str, default="0", help="Device: 0 para GPU, cpu para CPU (padrao: 0)")
-    parser.add_argument("--workers", type=int, default=4, help="Numero de workers para dataloader (padrao: 4)")
+    parser.add_argument("--workers", type=int, default=0, help="Numero de workers para dataloader (padrao: 0)")
     parser.add_argument("--name", type=str, default="detector_placas", help="Nome do experimento")
     parser.add_argument("--resume", type=str, default="", help="Caminho para checkpoint para retomar treino")
     parser.add_argument("--weights", type=str, default="", help="Pesos pre-treinados (vazio = treinar do zero)")
@@ -46,7 +46,7 @@ def treinar():
     data_yaml = RAIZ / "configs" / "dados-placas.yaml"
     model_yaml = YOLOV9_DIR / "models" / "detect" / "yolov9-c.yaml"
     hyp_yaml = RAIZ / "configs" / "hyp.scratch-high.yaml"
-    train_script = YOLOV9_DIR / "train.py"
+    train_script = YOLOV9_DIR / "train_dual.py"
 
     # Verificacoes
     if not train_script.exists():

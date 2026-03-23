@@ -45,6 +45,13 @@ def descompactar_dados(zips_dir: Path, dados_dir: Path):
         with zipfile.ZipFile(caminho_zip, "r") as zf:
             zf.extractall(pasta_destino)
 
+        # YOLO espera a pasta "images" para mapear labels automaticamente.
+        pasta_imagens = pasta_destino / "imagens"
+        pasta_images = pasta_destino / "images"
+        if pasta_imagens.exists() and not pasta_images.exists():
+            pasta_imagens.rename(pasta_images)
+            print(f"  [AJUSTE] Renomeado {pasta_imagens.name} -> {pasta_images.name}")
+
         print(f"  OK - {len(list(pasta_destino.rglob('*')))} arquivos extraidos")
 
     print("\nDados preparados com sucesso!")

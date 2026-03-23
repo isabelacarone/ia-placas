@@ -1,8 +1,8 @@
 # Caracteres placas
 # Deteccao de caracteres individuais em placas veiculares - YOLOv9
 
-# Caminho raiz do dataset (relativo ao arquivo YAML)
-path: ../dados
+# Caminho raiz do dataset (resolvido a partir de uvv/yolov9-main)
+path: ../../dados
 
 # Caminhos dos dados (relativos ao path acima)
 train: treino
