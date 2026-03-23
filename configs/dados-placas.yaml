@@ -1,15 +1,18 @@
 # Configuracao do dataset de placas veiculares - YOLOv9
 # Deteccao de caracteres individuais em placas
 
-# Caminhos dos dados (relativos ao diretorio raiz do projeto)
-train: ../dados/treino
-val: ../dados/validacao
-test: ../dados/teste
+# Caminho raiz do dataset (relativo ao arquivo YAML)
+path: ../dados
+
+# Caminhos dos dados (relativos ao path acima)
+train: treino
+val: validacao
+test: teste
 
 # Numero de classes
 nc: 35
 
-# Nomes das classes (digitos 0-9 e letras A-Z, exceto N, O, R, X)
+# Nomes das classes (digitos 0-9 e letras A-Z, exceto X)
 names:
   0: '0'
   1: '1'
