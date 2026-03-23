@@ -2,7 +2,7 @@
 # Deteccao de caracteres individuais em placas
 
 # Caminho raiz do dataset (relativo ao arquivo YAML)
-path: ../dados
+path: ../uvv
 
 # Caminhos dos dados (relativos ao path acima)
 train: treino
