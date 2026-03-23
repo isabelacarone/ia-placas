@@ -10,9 +10,10 @@ val: validacao
 test: teste
 
 # Numero de classes
-nc: 35
+nc: 34
 
-# Nomes das classes (digitos 0-9 e letras A-Z, exceto X)
+# Nomes das classes (digitos 0-9 e letras A-Z, exceto O e X)
+# O letra eh tratado como 0 (zero) pois sao visualmente identicos em placas
 names:
   0: '0'
   1: '1'
@@ -47,5 +48,4 @@ names:
   30: 'Y'
   31: 'Z'
   32: 'N'
-  33: 'O'
-  34: 'R'
+  33: 'R'
