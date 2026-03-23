@@ -1,5 +1,5 @@
-# Configuracao do dataset de placas veiculares - YOLOv9
-# Deteccao de caracteres individuais em placas
+# Caracteres placas
+# Deteccao de caracteres individuais em placas veiculares - YOLOv9
 
 # Caminho raiz do dataset (relativo ao arquivo YAML)
 path: ../dados
@@ -10,42 +10,12 @@ val: validacao
 test: teste
 
 # Numero de classes
-nc: 34
+nc: 35
 
-# Nomes das classes (digitos 0-9 e letras A-Z, exceto O e X)
-# O letra eh tratado como 0 (zero) pois sao visualmente identicos em placas
-names:
-  0: '0'
-  1: '1'
-  2: '2'
-  3: '3'
-  4: '4'
-  5: '5'
-  6: '6'
-  7: '7'
-  8: '8'
-  9: '9'
-  10: 'A'
-  11: 'B'
-  12: 'C'
-  13: 'D'
-  14: 'E'
-  15: 'F'
-  16: 'G'
-  17: 'H'
-  18: 'I'
-  19: 'J'
-  20: 'K'
-  21: 'L'
-  22: 'M'
-  23: 'P'
-  24: 'Q'
-  25: 'S'
-  26: 'T'
-  27: 'U'
-  28: 'V'
-  29: 'W'
-  30: 'Y'
-  31: 'Z'
-  32: 'N'
-  33: 'R'
+# Nomes das classes (digitos 0-9 e letras A-Z, exceto O)
+names: [
+  '0', '1', '2', '3', '4', '5', '6', '7', '8', '9',
+  'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J',
+  'K', 'L', 'M', 'N', 'P', 'Q', 'R', 'S', 'T', 'U',
+  'V', 'W', 'X', 'Y', 'Z'
+]
