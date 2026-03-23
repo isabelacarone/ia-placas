@@ -8,6 +8,12 @@ dados/teste/
 pesos/*.pt
 *.pt
 
+# Pastas de dados dentro de uvv (usar dados/ como pasta principal)
+uvv/treino/
+uvv/validacao/
+uvv/teste/
+uvv/datasets/
+
 # Resultados de treino/validacao/deteccao
 runs/
 uvv/yolov9-main/runs/
