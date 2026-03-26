@@ -29,18 +29,15 @@ trabalho-ia/
 
 ```bash
 python -m venv venv
-venv\Scripts\activate        # Windows
-# source venv/bin/activate   # Linux/Mac
+source venv/bin/activate   
+# venv\Scripts\activate        # Windows
 ```
 
 ### 2. Instalar dependências
 
 ```bash
-# Com GPU NVIDIA (CUDA 12.1):
-pip install torch torchvision --index-url https://download.pytorch.org/whl/cu121
-
-# Sem GPU (CPU apenas):
-pip install torch torchvision
+# com GPU NVIDIA - cuda 12.1:
+pip install torch torchvision --index-url https://download.pytorch.org/whl/cu12
 
 # Restante das dependências:
 pip install -r requirements.txt
@@ -54,7 +51,7 @@ Coloque os arquivos `Treino.zip`, `Validacao.zip` e `Teste.zip` em uma pasta e e
 python preparar_dados.py --zips-dir "C:/caminho/para/os/zips"
 ```
 
-Ou copie manualmente as imagens e labels para `dados/treino/`, `dados/validacao/` e `dados/teste/`.
+Ou copie/insira as imagens e labels em `dados/treino/`, `dados/validacao/` e `dados/teste/`.
 
 ## Como Usar
 
@@ -63,9 +60,6 @@ Ou copie manualmente as imagens e labels para `dados/treino/`, `dados/validacao/
 ```bash
 # Treinar com GPU (padrão)
 python treinar.py
-
-# Treinar com CPU
-python treinar.py --device cpu
 
 # Configurar épocas e batch size
 python treinar.py --epochs 100 --batch-size 4 --device 0
@@ -99,4 +93,16 @@ Os resultados ficam salvos em `uvv/yolov9-main/runs/detect/`.
 ## Classes Detectadas (35)
 
 Dígitos: `0 1 2 3 4 5 6 7 8 9`
-Letras: `A B C D E F G H I J K L M N O P Q R S T U V W Y Z`
+
+
+Letras: `A B C D E F G H I J K L M N P Q R S T U V W Y Z`
+
+## Rotulações
+
+É importante ressaltar que não há o upload do meu dataset nesse repositório, mas contém o label utilizado e os caracteres que o modelo aceita no tópico anterior. 
+
+
+O site utilziado para realizar a rotulação foi: https://www.makesense.ai/
+
+
+Utilizando o **bounding box**
