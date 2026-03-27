@@ -30,7 +30,7 @@ trabalho-ia/
 ```bash
 python -m venv venv
 source venv/bin/activate   
-# venv\Scripts\activate        # Windows
+# venv\Scripts\activate        -> windows
 ```
 
 ### 2. Instalar dependências
