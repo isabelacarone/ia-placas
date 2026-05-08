@@ -40,6 +40,8 @@ env/
 .idea/
 *.swp
 *.swo
+.kiro
+
 
 # OS
 .DS_Store
@@ -53,6 +55,7 @@ desktop.ini
 # Cache
 *.cache
 
-# egg
-.egg
 
+# docs
+
+/docs
