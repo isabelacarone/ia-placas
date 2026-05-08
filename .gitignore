@@ -4,6 +4,9 @@ dados/validacao/
 dados/teste/
 *.zip
 
+# dados do dataset
+data/
+
 # Pesos do modelo
 pesos/*.pt
 *.pt
@@ -49,3 +52,7 @@ desktop.ini
 
 # Cache
 *.cache
+
+# egg
+.egg
+
