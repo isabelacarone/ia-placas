@@ -1,0 +1,323 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "detector-placas-yolov9"
+version = "2.0.0"
+description = "Detector de caracteres em placas veiculares usando YOLOv9"
+readme = "README_REFATORADO.md"
+license = {text = "MIT"}
+authors = [
+    {name = "Projeto IA Placas", email = "contato@exemplo.com"}
+]
+maintainers = [
+    {name = "Projeto IA Placas", email = "contato@exemplo.com"}
+]
+keywords = [
+    "yolo",
+    "yolov9", 
+    "object-detection",
+    "license-plate",
+    "character-recognition",
+    "computer-vision",
+    "deep-learning",
+    "pytorch",
+]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "Intended Audience :: Science/Research",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+    "Topic :: Scientific/Engineering :: Image Recognition",
+]
+requires-python = ">=3.8"
+dependencies = [
+    # Base Python packages
+    "gitpython>=3.1.30",
+    "matplotlib>=3.5.0",
+    "opencv-python>=4.6.0",
+    "Pillow>=9.0.0",
+    "psutil>=5.9.0",
+    "PyYAML>=6.0",
+    "requests>=2.28.0",
+    "scipy>=1.9.0",
+    "tqdm>=4.64.0",
+    "ipython>=8.0.0",
+    
+    # PyTorch - será instalado separadamente devido às variações CUDA
+    # "torch>=2.0.0",
+    # "torchvision>=0.15.0",
+    
+    # Computer Vision & ML
+    "thop>=0.1.1",
+    "pycocotools>=2.0.6",
+    
+    # Logging & Monitoring
+    "tensorboard>=2.11.0",
+    
+    # Data Processing
+    "pandas>=1.5.0",
+    "seaborn>=0.11.0",
+    "numpy>=1.21.0",
+    
+    # System Utilities
+    "filelock>=3.8.0",
+    "fsspec>=2022.8.0",
+    
+    # Template Engine & Utilities
+    "Jinja2>=3.1.0",
+    "MarkupSafe>=2.1.0",
+    
+    # Mathematical Libraries
+    "mpmath>=1.2.0",
+    "sympy>=1.11.0",
+    "networkx>=2.8.0",
+    
+    # Compatibility & Extensions
+    "setuptools>=65.0.0",
+    "typing_extensions>=4.4.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "black>=22.0.0",
+    "flake8>=5.0.0",
+    "mypy>=0.991",
+    "isort>=5.10.0",
+    "pytest>=7.0.0",
+    "pytest-cov>=4.0.0",
+    "pre-commit>=3.0.0",
+]
+web = [
+    "flask>=2.2.0",
+    "flask-cors>=3.0.0",
+]
+api = [
+    "fastapi>=0.85.0",
+    "uvicorn>=0.18.0",
+]
+torch-cpu = [
+    "torch>=2.0.0",
+    "torchvision>=0.15.0",
+]
+torch-cuda118 = [
+    "torch>=2.0.0",
+    "torchvision>=0.15.0",
+]
+torch-cuda121 = [
+    "torch>=2.0.0", 
+    "torchvision>=0.15.0",
+]
+extras = [
+    "wandb>=0.13.0",
+    "albumentations>=1.3.0",
+    "imgaug>=0.4.0",
+]
+
+[project.urls]
+Homepage = "https://github.com/usuario/detector-placas-yolov9"
+Documentation = "https://github.com/usuario/detector-placas-yolov9/docs"
+Repository = "https://github.com/usuario/detector-placas-yolov9"
+"Bug Reports" = "https://github.com/usuario/detector-placas-yolov9/issues"
+Changelog = "https://github.com/usuario/detector-placas-yolov9/blob/main/CHANGELOG.md"
+
+[[tool.uv.index]]
+url = "https://download.pytorch.org/whl/cu121"
+
+[project.scripts]
+placas-prepare = "scripts.prepare_data:main"
+placas-train = "scripts.train:main"
+placas-validate = "scripts.validate:main"
+placas-detect = "scripts.detect:main"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["src*", "scripts*"]
+exclude = ["tests*", "docs*"]
+
+[tool.setuptools.package-data]
+"*" = ["*.yaml", "*.yml", "*.md", "*.txt"]
+
+# ============================================================================
+# FERRAMENTAS DE DESENVOLVIMENTO
+# ============================================================================
+
+[tool.black]
+line-length = 88
+target-version = ['py38', 'py39', 'py310', 'py311']
+include = '\.pyi?$'
+extend-exclude = '''
+/(
+  # directories
+  \.eggs
+  | \.git
+  | \.hg
+  | \.mypy_cache
+  | \.tox
+  | \.venv
+  | build
+  | dist
+  | uvv
+)/
+'''
+
+[tool.isort]
+profile = "black"
+multi_line_output = 3
+line_length = 88
+known_first_party = ["src", "scripts"]
+skip_glob = ["uvv/*"]
+
+[tool.flake8]
+max-line-length = 88
+extend-ignore = ["E203", "W503", "E501"]
+exclude = [
+    ".git",
+    "__pycache__",
+    "build",
+    "dist",
+    ".venv",
+    "venv",
+    "uvv",
+]
+per-file-ignores = [
+    "__init__.py:F401",
+]
+
+[tool.mypy]
+python_version = "3.8"
+warn_return_any = true
+warn_unused_configs = true
+disallow_untyped_defs = true
+disallow_incomplete_defs = true
+check_untyped_defs = true
+disallow_untyped_decorators = true
+no_implicit_optional = true
+warn_redundant_casts = true
+warn_unused_ignores = true
+warn_no_return = true
+warn_unreachable = true
+strict_equality = true
+exclude = [
+    "uvv/",
+    "build/",
+    "dist/",
+]
+
+[[tool.mypy.overrides]]
+module = [
+    "cv2.*",
+    "torch.*",
+    "torchvision.*",
+    "tensorboard.*",
+    "matplotlib.*",
+    "seaborn.*",
+    "scipy.*",
+    "sklearn.*",
+    "PIL.*",
+]
+ignore_missing_imports = true
+
+[tool.pytest.ini_options]
+minversion = "7.0"
+addopts = [
+    "-ra",
+    "--strict-markers",
+    "--strict-config",
+    "--cov=src",
+    "--cov-report=term-missing",
+    "--cov-report=html",
+    "--cov-report=xml",
+]
+testpaths = ["tests"]
+python_files = ["test_*.py", "*_test.py"]
+python_classes = ["Test*"]
+python_functions = ["test_*"]
+markers = [
+    "slow: marks tests as slow (deselect with '-m \"not slow\"')",
+    "integration: marks tests as integration tests",
+    "unit: marks tests as unit tests",
+]
+
+[tool.coverage.run]
+source = ["src"]
+omit = [
+    "*/tests/*",
+    "*/test_*",
+    "setup.py",
+]
+
+[tool.coverage.report]
+exclude_lines = [
+    "pragma: no cover",
+    "def __repr__",
+    "if self.debug:",
+    "if settings.DEBUG",
+    "raise AssertionError",
+    "raise NotImplementedError",
+    "if 0:",
+    "if __name__ == .__main__.:",
+    "class .*\\bProtocol\\):",
+    "@(abc\\.)?abstractmethod",
+]
+
+# ============================================================================
+# DEPENDENCY GROUPS (UV)
+# ============================================================================
+
+[dependency-groups]
+dev = [
+    "black>=22.0.0",
+    "flake8>=5.0.0", 
+    "mypy>=0.991",
+    "isort>=5.10.0",
+    "pytest>=7.0.0",
+    "pytest-cov>=4.0.0",
+    "pre-commit>=3.0.0",
+]
+torch-cpu = [
+    "torch>=2.0.0",
+    "torchvision>=0.15.0",
+]
+torch-cuda118 = [
+    "torch>=2.0.0",
+    "torchvision>=0.15.0",
+]
+torch-cuda121 = [
+    "torch>=2.0.0",
+    "torchvision>=0.15.0",
+]
+
+# ============================================================================
+# UV CONFIGURATION
+# ============================================================================
+
+[tool.uv]
+# Configurações do UV
+package = true
+managed = true
+
+[tool.uv.sources]
+# Configurações específicas para PyTorch baseadas no sistema
+# Descomente as linhas apropriadas para seu sistema:
+
+# Para CPU apenas:
+# torch = { index = "https://download.pytorch.org/whl/cpu" }
+# torchvision = { index = "https://download.pytorch.org/whl/cpu" }
+
+# Para CUDA 11.8:
+# torch = { index = "https://download.pytorch.org/whl/cu118" }
+# torchvision = { index = "https://download.pytorch.org/whl/cu118" }
+
+# Para CUDA 12.1:
+# torch = { index = "https://download.pytorch.org/whl/cu121" }
+# torchvision = { index = "https://download.pytorch.org/whl/cu121" }

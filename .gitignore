@@ -4,6 +4,9 @@ dados/validacao/
 dados/teste/
 *.zip
 
+# dados do dataset
+data/
+
 # Pesos do modelo
 pesos/*.pt
 *.pt
@@ -37,6 +40,8 @@ env/
 .idea/
 *.swp
 *.swo
+.kiro
+
 
 # OS
 .DS_Store
@@ -49,3 +54,8 @@ desktop.ini
 
 # Cache
 *.cache
+
+
+# docs
+
+/docs
