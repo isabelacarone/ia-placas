@@ -178,7 +178,7 @@ def validate_device(device: str) -> str:
     if device.startswith("cuda:") and device[5:].isdigit():
         return device[5:]  # Retorna apenas o número
     
-    raise ValueError(f"Dispositivo inválido: {device}")
+    raise ValueError(f"Dispositivo inválido: '{device}'")
 
 
 def check_yolov9_installation() -> bool:

@@ -6,6 +6,7 @@ utilizados no projeto de detecção de placas.
 """
 
 import os
+from datetime import datetime
 from pathlib import Path
 from typing import List, Dict, Any
 from dataclasses import dataclass
@@ -89,6 +90,10 @@ class ProjectConfig:
         
         for directory in directories:
             directory.mkdir(parents=True, exist_ok=True)
+    
+    def get_timestamp(self) -> str:
+        """Retorna timestamp atual formatado como string."""
+        return datetime.now().strftime('%Y%m%d_%H%M%S')
     
     def validate_paths(self) -> Dict[str, bool]:
         """Valida se os caminhos essenciais existem."""
