@@ -5,6 +5,7 @@ Este módulo contém classes e funções para executar detecção
 de caracteres em placas usando o modelo treinado.
 """
 
+import re
 import sys
 import subprocess
 from pathlib import Path
@@ -138,7 +139,8 @@ class YOLOv9Detector:
         result = subprocess.run(cmd, cwd=str(self.config.YOLOV9_DIR))
         
         if result.returncode == 0:
-            logger.info("Detecção concluída com sucesso!")
+            results_dir = self.config.YOLOV9_DIR / "runs" / "detect"
+            logger.info(f"Detecção concluída com sucesso! Resultados salvos em: {results_dir}")
             self._print_results_location()
         else:
             logger.error(f"Detecção falhou com código: {result.returncode}")
@@ -293,6 +295,23 @@ class PlateCharacterProcessor:
         
         return processed_results
     
+    def _filter_by_confidence(
+        self,
+        detections: List[Dict],
+        threshold: float
+    ) -> List[Dict]:
+        """
+        Filtra detecções pelo valor de confiança.
+        
+        Args:
+            detections: Lista de detecções a filtrar
+            threshold: Threshold mínimo de confiança (inclusive)
+        
+        Returns:
+            Lista contendo apenas detecções com confidence >= threshold
+        """
+        return [d for d in detections if d['confidence'] >= threshold]
+
     def _parse_detection_file(
         self,
         label_file: Path,
@@ -308,7 +327,7 @@ class PlateCharacterProcessor:
         Returns:
             Lista de detecções válidas
         """
-        detections = []
+        raw_detections = []
         
         try:
             with open(label_file, 'r', encoding='utf-8') as f:
@@ -323,22 +342,21 @@ class PlateCharacterProcessor:
                         height = float(parts[4])
                         confidence = float(parts[5]) if len(parts) > 5 else 1.0
                         
-                        if confidence >= confidence_threshold:
-                            detection = {
-                                'class_id': class_id,
-                                'class_name': self.class_mapping.get(class_id, 'unknown'),
-                                'x_center': x_center,
-                                'y_center': y_center,
-                                'width': width,
-                                'height': height,
-                                'confidence': confidence
-                            }
-                            detections.append(detection)
+                        detection = {
+                            'class_id': class_id,
+                            'class_name': self.class_mapping.get(class_id, 'unknown'),
+                            'x_center': x_center,
+                            'y_center': y_center,
+                            'width': width,
+                            'height': height,
+                            'confidence': confidence
+                        }
+                        raw_detections.append(detection)
         
         except Exception as e:
             logger.warning(f"Erro ao processar {label_file}: {e}")
         
-        return detections
+        return self._filter_by_confidence(raw_detections, confidence_threshold)
     
     def _reconstruct_plate_text(self, detections: List[Dict[str, Any]]) -> str:
         """
@@ -373,6 +391,35 @@ class PlateCharacterProcessor:
         
         confidences = [det['confidence'] for det in detections]
         return sum(confidences) / len(confidences)
+
+    def _validate_plate_format(self, plate_text: str) -> Dict[str, Any]:
+        """
+        Valida se o texto da placa corresponde a um formato brasileiro válido.
+
+        Formatos suportados:
+        - Placa_Antiga:   3 letras + 4 dígitos  (ex: ABC1234)
+        - Placa_Mercosul: 3 letras + 1 dígito + 1 letra + 2 dígitos (ex: ABC1D23)
+
+        Args:
+            plate_text: Texto reconstruído da placa
+
+        Returns:
+            Dicionário com 'valid_format' (bool) e 'plate_type' (str ou None)
+        """
+        # Comprimento diferente de 7 → inválido imediatamente
+        if len(plate_text) != 7:
+            return {'valid_format': False, 'plate_type': None}
+
+        # Padrão Placa_Antiga: AAA0000
+        if re.match(r'^[A-Z]{3}[0-9]{4}$', plate_text):
+            return {'valid_format': True, 'plate_type': 'Placa_Antiga'}
+
+        # Padrão Placa_Mercosul: AAA0A00
+        if re.match(r'^[A-Z]{3}[0-9][A-Z][0-9]{2}$', plate_text):
+            return {'valid_format': True, 'plate_type': 'Placa_Mercosul'}
+
+        # Nenhum padrão reconhecido
+        return {'valid_format': False, 'plate_type': None}
 
 
 def create_argument_parser() -> argparse.ArgumentParser:

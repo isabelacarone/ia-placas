@@ -136,7 +136,8 @@ class YOLOv9Validator:
         result = subprocess.run(cmd, cwd=str(self.config.YOLOV9_DIR))
         
         if result.returncode == 0:
-            logger.info("Validação concluída com sucesso!")
+            results_dir = self.config.YOLOV9_DIR / "runs" / "val"
+            logger.info(f"Validação concluída com sucesso! Resultados salvos em: {results_dir}")
             self._print_results_location()
         else:
             logger.error(f"Validação falhou com código: {result.returncode}")
