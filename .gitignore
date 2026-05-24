@@ -1,15 +1,23 @@
+# ============================================================================
+# DADOS DO PROJETO
+# ============================================================================
+
 # Dados do dataset (muito grandes para git)
 dados/treino/
 dados/validacao/
 dados/teste/
-*.zip
-
-# dados do dataset
 data/
+*.zip
+*.tar.gz
+*.rar
 
 # Pesos do modelo
 pesos/*.pt
 *.pt
+*.pth
+*.weights
+*.onnx
+*.tflite
 
 # Pastas de dados dentro de uvv (usar dados/ como pasta principal)
 uvv/treino/
@@ -20,42 +28,243 @@ uvv/datasets/
 # Resultados de treino/validacao/deteccao
 runs/
 uvv/yolov9-main/runs/
+outputs/
+results/
 
-# Python
+# ============================================================================
+# PYTHON
+# ============================================================================
+
+# Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
-*.egg-info/
-dist/
-build/
-.eggs/
-*.egg
+*$py.class
+*.so
 
-# Ambiente virtual
+# Distribution / packaging
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# PyInstaller
+*.manifest
+*.spec
+
+# ============================================================================
+# AMBIENTES VIRTUAIS
+# ============================================================================
+
 venv/
 .venv/
 env/
+ENV/
+env.bak/
+venv.bak/
+pythonenv*/
 
-# IDE
+# ============================================================================
+# UV (Python Package Manager)
+# ============================================================================
+
+.uv/
+uv.lock
+
+# ============================================================================
+# TESTES E COBERTURA
+# ============================================================================
+
+# Pytest
+.pytest_cache/
+.pytest_tmp/
+
+# Coverage
+.coverage
+.coverage.*
+htmlcov/
+coverage.xml
+*.cover
+.hypothesis/
+.tox/
+.nox/
+
+# ============================================================================
+# IDEs E EDITORES
+# ============================================================================
+
+# VS Code
 .vscode/
+*.code-workspace
+
+# PyCharm
 .idea/
+*.iml
+*.iws
+*.ipr
+
+# Vim
 *.swp
 *.swo
-.kiro
+*~
+.vim/
 
+# Emacs
+*~
+\#*\#
+/.emacs.desktop
+/.emacs.desktop.lock
+*.elc
 
-# OS
-.DS_Store
-Thumbs.db
-desktop.ini
+# Sublime Text
+*.sublime-project
+*.sublime-workspace
 
-# Jupyter
+# Kiro
+.kiro/
+
+# ============================================================================
+# JUPYTER NOTEBOOK
+# ============================================================================
+
 .ipynb_checkpoints/
 *.ipynb
+profile_default/
+ipython_config.py
 
-# Cache
+# ============================================================================
+# LOGS E DEBUGGING
+# ============================================================================
+
+*.log
+logs/
+*.log.*
+pip-log.txt
+pip-delete-this-directory.txt
+
+# ============================================================================
+# SISTEMA OPERACIONAL
+# ============================================================================
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+
+# Windows
+Thumbs.db
+Thumbs.db:encryptable
+ehthumbs.db
+ehthumbs_vista.db
+*.stackdump
+[Dd]esktop.ini
+$RECYCLE.BIN/
+
+# Linux
+*~
+.directory
+.Trash-*
+
+# ============================================================================
+# MACHINE LEARNING / DEEP LEARNING
+# ============================================================================
+
+# TensorBoard
+events.out.tfevents.*
+tensorboard/
+
+# Weights & Biases
+wandb/
+
+# MLflow
+mlruns/
+
+# DVC
+.dvc/
+*.dvc
+
+# ============================================================================
+# CACHE E TEMPORÁRIOS
+# ============================================================================
+
 *.cache
+.cache/
+*.tmp
+*.temp
+tmp/
+temp/
 
+# ============================================================================
+# DOCUMENTAÇÃO
+# ============================================================================
 
-# docs
+# Sphinx documentation
+docs/_build/
+docs/_static/
+docs/_templates/
 
-/docs
+# MkDocs
+site/
+
+# ============================================================================
+# SEGURANÇA E CREDENCIAIS
+# ============================================================================
+
+# Variáveis de ambiente
+.env
+.env.local
+.env.*.local
+*.env
+
+# Credenciais
+credentials.json
+secrets.json
+*.key
+*.pem
+*.crt
+
+# ============================================================================
+# OUTROS
+# ============================================================================
+
+# Backup files
+*.bak
+*.backup
+*.old
+
+# Compressed files (exceto se necessário)
+# *.7z
+# *.dmg
+# *.gz
+# *.iso
+# *.jar
+# *.rar
+# *.tar
+# *.zip
+
+# ============================================================================
+# EXCEÇÕES (arquivos que DEVEM ser versionados)
+# ============================================================================
+
+# Manter arquivos de configuração importantes
+!configs/*.yaml
+!configs/*.yml
+!.gitignore
+!.python-version
+
+# Manter estrutura de pastas vazias
+!**/.gitkeep
