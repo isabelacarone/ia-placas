@@ -1,0 +1,2 @@
+# Esta pasta armazena os pesos do modelo treinado (.pt)
+# Os arquivos .pt são ignorados pelo git devido ao tamanho
