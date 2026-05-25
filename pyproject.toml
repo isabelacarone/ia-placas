@@ -39,7 +39,7 @@ classifiers = [
     "Topic :: Scientific/Engineering :: Artificial Intelligence",
     "Topic :: Scientific/Engineering :: Image Recognition",
 ]
-requires-python = ">=3.8"
+requires-python = ">=3.8,<3.13"
 dependencies = [
     # Base Python packages
     "gitpython>=3.1.30",
@@ -107,16 +107,16 @@ api = [
     "uvicorn>=0.18.0",
 ]
 torch-cpu = [
-    "torch>=2.0.0",
-    "torchvision>=0.15.0",
+    "torch>=2.5.1",
+    "torchvision>=0.20.1",
 ]
 torch-cuda118 = [
-    "torch>=2.0.0",
-    "torchvision>=0.15.0",
+    "torch>=2.5.1",
+    "torchvision>=0.20.1",
 ]
 torch-cuda121 = [
-    "torch>=2.0.0", 
-    "torchvision>=0.15.0",
+    "torch>=2.5.1", 
+    "torchvision>=0.20.1",
 ]
 extras = [
     "wandb>=0.13.0",
@@ -287,16 +287,16 @@ dev = [
     "hypothesis>=6.0.0",
 ]
 torch-cpu = [
-    "torch>=2.0.0",
-    "torchvision>=0.15.0",
+    "torch>=2.5.1",
+    "torchvision>=0.20.1",
 ]
 torch-cuda118 = [
-    "torch>=2.0.0",
-    "torchvision>=0.15.0",
+    "torch>=2.5.1",
+    "torchvision>=0.20.1",
 ]
 torch-cuda121 = [
-    "torch>=2.0.0",
-    "torchvision>=0.15.0",
+    "torch>=2.5.1",
+    "torchvision>=0.20.1",
 ]
 
 # ============================================================================
