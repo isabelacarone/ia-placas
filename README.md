@@ -1,6 +1,11 @@
 # Detector de Caracteres em Placas Veiculares - YOLOv9
 
-Projeto de detecção de caracteres individuais em placas veiculares brasileiras usando YOLOv9.
+Projeto de detecção de caracteres individuais em placas veiculares sul-americanas usando YOLOv9.
+
+[![Python](https://img.shields.io/badge/python-3.8%2B-blue.svg)](https://www.python.org/downloads/)
+[![PyTorch](https://img.shields.io/badge/PyTorch-2.0%2B-red.svg)](https://pytorch.org/)
+[![License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
+[![Tests](https://img.shields.io/badge/tests-pytest-yellow.svg)](tests/)
 
 ## Estrutura do Projeto
 
@@ -35,23 +40,21 @@ source venv/bin/activate
 
 ### 2. Instalar dependências
 
-```bash
-# com GPU NVIDIA - cuda 12.1:
-pip install torch torchvision --index-url https://download.pytorch.org/whl/cu12
-
-# Restante das dependências:
-pip install -r requirements.txt
-```
-
-### 3. Preparar dados
-
-Coloque os arquivos `Treino.zip`, `Validacao.zip` e `Teste.zip` em uma pasta e execute:
+#### Usando uv 
 
 ```bash
-python preparar_dados.py --zips-dir "C:/caminho/para/os/zips"
-```
+# Instalar UV (se ainda não tiver)
+pip install uv
 
-Ou copie/insira as imagens e labels em `dados/treino/`, `dados/validacao/` e `dados/teste/`.
+# Instalar dependências do projeto
+uv sync
+
+# Instalar dependências de desenvolvimento (inclui pytest)
+uv sync --group dev
+
+# Instalar PyTorch com CUDA 12.1
+uv sync --group torch-cuda121
+```
 
 ## Como Usar
 
@@ -97,12 +100,14 @@ Dígitos: `0 1 2 3 4 5 6 7 8 9`
 
 Letras: `A B C D E F G H I J K L M N P Q R S T U V W Y Z`
 
+## Testes
+
+O projeto inclui testes unitários e testes baseados em propriedades (property-based testing) usando pytest e hypothesis.
+
 ## Rotulações
 
 É importante ressaltar que não há o upload do meu dataset nesse repositório, mas contém o label utilizado e os caracteres que o modelo aceita no tópico anterior. 
 
-
-O site utilziado para realizar a rotulação foi: https://www.makesense.ai/
-
+O site utilizado para realizar a rotulação foi: https://www.makesense.ai/
 
 Utilizando o **bounding box**
